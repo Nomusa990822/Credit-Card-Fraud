@@ -36,3 +36,17 @@ SELECT
     ) AS fraud_rate_pct
 FROM fraud_cleaned
 GROUP BY gender;
+
+DROP VIEW IF EXISTS fraud_rate_by_state;
+CREATE VIEW fraud_rate_by_state AS
+SELECT
+    state,
+    COUNT(*) AS total_transactions,
+    SUM(CASE WHEN is_fraud = 1 THEN 1 ELSE 0 END) AS fraud_transactions,
+    ROUND(
+        100.0 * SUM(CASE WHEN is_fraud = 1 THEN 1 ELSE 0 END) / COUNT(*),
+        4
+    ) AS fraud_rate_pct
+FROM fraud_cleaned
+GROUP BY state
+HAVING COUNT(*) >= 1000;
