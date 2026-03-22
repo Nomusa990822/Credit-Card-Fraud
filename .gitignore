@@ -1,0 +1,118 @@
+# =========================
+# 📊 DATA FILES (VERY IMPORTANT)
+# =========================
+data/
+*.csv
+*.zip
+*.gz
+*.tar
+*.7z
+
+# Kaggle downloads
+*.json
+!kaggle.json  # (optional: only if you explicitly want to track it — usually DO NOT)
+
+# =========================
+# 🐍 PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# 📓 JUPYTER NOTEBOOK
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# 🧪 TESTING
+# =========================
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# 📦 DEPENDENCY / PACKAGE MANAGERS
+# =========================
+pip-log.txt
+pip-delete-this-directory.txt
+
+# =========================
+# 🗄️ DATABASE FILES
+# =========================
+*.db
+*.sqlite3
+*.sqlite
+*.duckdb
+
+# =========================
+# 🖥️ OS FILES
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# 🧰 IDE / EDITOR
+# =========================
+
+# VS Code
+.vscode/
+
+# JetBrains (PyCharm, etc.)
+.idea/
+
+# =========================
+# 🐳 DOCKER (if you add later)
+# =========================
+*.log
+
+# =========================
+# 🔐 ENVIRONMENT VARIABLES (VERY IMPORTANT)
+# =========================
+.env
+.env.*
+
+# =========================
+# 🔑 KAGGLE API KEY (CRITICAL)
+# =========================
+.kaggle/
+kaggle.json
+
+# =========================
+# 📊 OUTPUTS / GENERATED FILES
+# =========================
+outputs/
+results/
+figures/
+*.png
+*.jpg
+*.jpeg
+
+# =========================
+# 🧾 TEMP FILES
+# =========================
+*.tmp
+*.temp
+*.swp
+
+# =========================
+# 🚫 NODE (if you ever add frontend)
+# =========================
+node_modules/
+
+# =========================
+# 🧠 CUSTOM PROJECT FILES
+# =========================
+credit-card-fraud-detection.zip
