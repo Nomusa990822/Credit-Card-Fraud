@@ -1,0 +1,24 @@
+# Core data handling
+pandas==2.2.2
+numpy==1.26.4
+
+# Visualization
+matplotlib==3.8.4
+seaborn==0.13.2
+
+# Jupyter / Notebook support
+notebook==7.2.0
+ipykernel==6.29.4
+
+# Date & time handling
+python-dateutil==2.9.0.post0
+
+# Optional: for exporting plots / better visuals
+plotly==5.22.0
+
+# Optional: Kaggle API (for dataset download)
+kaggle==1.6.14
+
+# SQL (choose one depending on your setup)
+psycopg2-binary==2.9.9      # PostgreSQL
+sqlalchemy==2.0.30          # General SQL interface
