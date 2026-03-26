@@ -1,174 +1,213 @@
-\documentclass[12pt]{article}
+\documentclass[conference]{IEEEtran}
 
-\usepackage[a4paper, margin=1in]{geometry}
 \usepackage{graphicx}
-\usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{float}
-\usepackage{hyperref}
+\usepackage{cite}
 
-\title{\textbf{Credit Card Fraud Detection:\\
-Exploratory Data Analysis and Behavioral Profiling}}
+\title{Credit Card Fraud Detection: Exploratory Data Analysis and Behavioral Profiling}
 
-\author{Nomusa Shongwe}
-\date{}
+\author{
+\IEEEauthorblockN{Nomusa Shongwe}
+\IEEEauthorblockA{
+Independent Researcher\\
+Email: your-email@example.com
+}
+}
 
 \begin{document}
 
 \maketitle
 
+%------------------------------------------------
 \begin{abstract}
-Credit card fraud remains a significant challenge in modern financial systems. This study performs an in-depth exploratory data analysis (EDA) to identify behavioral patterns associated with fraudulent transactions. Results indicate that fraud is driven primarily by transaction context, including time, amount, and category, rather than demographic attributes. Fraudulent transactions are more frequent during late-night hours, involve higher monetary values, and are concentrated in online retail categories. Correlation analysis reveals weak linear relationships, emphasizing the need for multi-feature modeling approaches.
+Credit card fraud detection is a critical problem in modern financial systems due to the increasing volume of digital transactions and evolving fraud strategies. This study presents a comprehensive exploratory data analysis (EDA) of transactional data to identify behavioral, temporal, and categorical patterns associated with fraudulent activity. The analysis reveals that fraud is strongly associated with late-night transactions, higher transaction amounts, and specific transaction categories such as online shopping. Additionally, weak linear correlations between numeric features and fraud indicate that fraud detection is driven by complex interactions rather than individual predictors. These findings provide a strong foundation for subsequent machine learning modeling.
 \end{abstract}
 
+\begin{IEEEkeywords}
+Fraud Detection, Exploratory Data Analysis, Credit Card Fraud, Data Science, Behavioral Analysis
+\end{IEEEkeywords}
+
+%------------------------------------------------
 \section{Introduction}
 
-With the rapid growth of digital transactions, fraud detection has become increasingly important. Traditional rule-based systems are insufficient due to evolving fraud strategies. Data-driven approaches, particularly machine learning, require a strong understanding of underlying data patterns.
+The rapid adoption of digital payment systems has significantly increased both transaction convenience and exposure to fraud. Credit card fraud detection has therefore become a major concern for financial institutions.
 
-This study applies exploratory data analysis to uncover fraud characteristics and inform predictive modeling.
+Traditional rule-based detection systems struggle to adapt to evolving fraud patterns. As a result, data-driven approaches have become essential. However, before applying machine learning techniques, it is critical to understand the structure and behavior of the data.
 
-\section{Methodology}
-
-The analysis includes:
+Exploratory Data Analysis (EDA) plays a key role in:
 \begin{itemize}
-    \item Data preprocessing and feature engineering
-    \item Temporal analysis (hour, day, night)
-    \item Demographic analysis (age)
-    \item Category-based fraud analysis
-    \item Correlation analysis
+    \item uncovering hidden patterns,
+    \item identifying high-risk behaviors,
+    \item understanding feature relationships,
+    \item guiding feature engineering.
 \end{itemize}
 
-\section{Results and Discussion}
+This study focuses exclusively on understanding fraud patterns through EDA, forming a foundation for future modeling work.
 
-\subsection{Day vs Late-Night Fraud}
+%------------------------------------------------
+\section{Methodology}
+
+The analysis follows a structured exploratory approach:
+
+\begin{enumerate}
+    \item Data preprocessing and cleaning
+    \item Feature engineering (time-based and demographic features)
+    \item Fraud rate analysis across key dimensions
+    \item Fraud-only behavioral profiling
+    \item Correlation analysis of numeric features
+\end{enumerate}
+
+Key engineered features include:
+\begin{itemize}
+    \item \textbf{Age bands} for demographic grouping
+    \item \textbf{Transaction hour} and \textbf{day of week}
+    \item \textbf{Night transaction indicator}
+\end{itemize}
+
+The target variable represents whether a transaction is fraudulent.
+
+%------------------------------------------------
+\section{Results}
+
+\subsection{Temporal Fraud Patterns}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/day_vs_night.png}
-\caption{Daytime vs Late-Night Fraud Comparison}
+\includegraphics[width=0.9\linewidth]{figures/day_vs_night.jpg}
+\caption{Fraud Rate: Daytime vs Late Night}
 \end{figure}
 
-Fraud is significantly higher during late-night hours, with a fraud rate exceeding daytime activity by more than tenfold. This suggests exploitation of low-monitoring periods.
-
-\subsection{Fraud Rate by Day of Week}
+Fraud rates are significantly higher during late-night periods compared to daytime transactions, suggesting that fraudulent activity is more prevalent during low-surveillance hours.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/day_of_week.png}
+\includegraphics[width=0.9\linewidth]{figures/day_of_week.jpg}
 \caption{Fraud Rate by Day of Week}
 \end{figure}
 
-Fraud increases through the week and peaks around Thursday and Friday, indicating alignment with higher transaction volumes.
+Fraud rates increase gradually throughout the week, peaking on Thursday and Friday. This may reflect increased transaction activity and spending behavior toward the end of the week.
 
-\subsection{Customer Age Distribution}
+%------------------------------------------------
+\subsection{Demographic Analysis}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/age_distribution.png}
-\caption{Distribution of Customer Age}
+\includegraphics[width=0.9\linewidth]{figures/age_distribution.jpg}
+\caption{Customer Age Distribution}
 \end{figure}
 
-Most customers fall between ages 30 and 60.
+The dataset is dominated by middle-aged individuals, with most customers between 30 and 60 years old.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/age_boxplot.png}
+\includegraphics[width=0.9\linewidth]{figures/age_boxplot.jpg}
 \caption{Customer Age by Fraud Class}
 \end{figure}
 
-There is significant overlap between fraud and non-fraud age distributions, indicating weak predictive power.
-
-\subsection{Fraud Rate by Age Band}
+There is substantial overlap in age distributions between fraudulent and non-fraudulent transactions, indicating that age alone is not a strong predictor of fraud.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/age_band.png}
+\includegraphics[width=0.9\linewidth]{figures/age_band.jpg}
 \caption{Fraud Rate by Age Band}
 \end{figure}
 
-Older age groups show slightly higher fraud rates, but differences remain small.
+Fraud risk varies across age groups, with higher rates observed in older customers and moderate risk among younger users.
 
-\subsection{Fraud Transaction Amount Distribution}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/fraud_amount.png}
-\caption{Fraud Transaction Amount Distribution}
-\end{figure}
-
-Fraudulent transactions are generally higher in value, supporting the hypothesis that fraudsters maximize returns.
-
-\subsection{Fraud Categories}
+%------------------------------------------------
+\subsection{Transaction Characteristics}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/categories.png}
-\caption{Top Fraud Categories}
+\includegraphics[width=0.9\linewidth]{figures/fraud_amount.jpg}
+\caption{Fraudulent Transaction Amount Distribution}
 \end{figure}
 
-Fraud is concentrated in online and retail categories such as \texttt{shopping\_net} and \texttt{grocery\_pos}.
+Fraudulent transactions tend to occur at higher monetary values, suggesting that fraudsters target larger transactions to maximize gains.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/categories.jpg}
+\caption{Top Categories Among Fraudulent Transactions}
+\end{figure}
+
+Fraud is concentrated in specific transaction categories, particularly online shopping and point-of-sale transactions.
+
+%------------------------------------------------
 \subsection{Correlation Analysis}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/heatmap.png}
-\caption{Correlation Heatmap}
+\includegraphics[width=0.95\linewidth]{figures/heatmap.jpg}
+\caption{Correlation Heatmap of Numeric Features}
 \end{figure}
 
-Most features show weak correlations with fraud, confirming that fraud detection is a multi-feature problem.
-
-\subsection{Top Features Correlated with Fraud}
+The correlation analysis shows that most numeric features have weak linear relationships with fraud, indicating that fraud detection is not driven by single-variable effects.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/top_features.png}
-\caption{Top Features Correlated with Fraud}
+\includegraphics[width=0.95\linewidth]{figures/top_features.jpg}
+\caption{Top Numeric Features Correlated with Fraud}
 \end{figure}
 
-Transaction amount is the strongest predictor, followed by log-transformed amount and night transaction indicators.
+Transaction amount and night transaction indicators emerge as the most relevant features, although their correlations remain moderate.
 
-\subsection{Fraud Fingerprint}
+%------------------------------------------------
+\section{Discussion}
 
-A typical fraudulent transaction can be summarized as:
+The results highlight that fraudulent behavior is primarily driven by transaction context rather than customer demographics.
 
-\begin{quote}
-A high-value transaction occurring late at night, often in online retail categories, and more likely toward the end of the week.
-\end{quote}
+Key insights include:
+\begin{itemize}
+    \item Fraud is significantly higher during late-night hours.
+    \item Fraud increases toward the end of the week.
+    \item High-value transactions are more likely to be fraudulent.
+    \item Fraud is concentrated in specific transaction categories.
+\end{itemize}
 
+These findings suggest that fraud detection requires combining multiple behavioral signals rather than relying on individual features.
+
+%------------------------------------------------
 \section{Limitations}
 
-\begin{itemize}
-    \item Severe class imbalance
-    \item Lack of behavioral features (e.g., device, transaction frequency)
-    \item Static dataset
-    \item Weak linear correlations
-\end{itemize}
-
-\section{Implications for Machine Learning}
+The analysis has several limitations:
 
 \begin{itemize}
-    \item Use non-linear models (Random Forest, Gradient Boosting)
-    \item Engineer temporal and behavioral features
-    \item Apply imbalance handling techniques (SMOTE, class weights)
-    \item Optimize for precision, recall, and F1-score
+    \item \textbf{Class imbalance:} Fraud cases are rare relative to legitimate transactions.
+    \item \textbf{Limited feature scope:} Missing features such as device data, transaction velocity, and user history.
+    \item \textbf{Static dataset:} Does not capture evolving fraud patterns over time.
+    \item \textbf{Correlation limitations:} Only linear relationships are examined.
 \end{itemize}
 
+%------------------------------------------------
+\section{Implications for Modeling}
+
+The findings from this EDA provide clear direction for future modeling:
+
+\begin{itemize}
+    \item Use non-linear models such as Random Forest or XGBoost.
+    \item Prioritize features related to transaction amount and timing.
+    \item Engineer behavioral features (e.g., night transactions).
+    \item Address class imbalance using techniques such as resampling or class weighting.
+\end{itemize}
+
+%------------------------------------------------
 \section{Conclusion}
 
-Fraud detection is primarily a behavioral problem driven by transaction context rather than demographics. Key indicators include transaction timing, amount, and category.
+This study demonstrates that credit card fraud is fundamentally a behavioral phenomenon rather than a purely demographic one. Fraudulent transactions are more likely to occur during late-night periods, involve higher transaction amounts, and appear in high-risk categories.
 
-These insights provide a strong foundation for developing robust fraud detection systems.
+The weak individual correlations observed highlight the importance of capturing complex feature interactions. These insights provide a strong foundation for the development of robust machine learning-based fraud detection systems.
 
-\section{References}
+%------------------------------------------------
+\begin{thebibliography}{00}
 
-\begin{enumerate}
-    \item Bolton, R. J., \& Hand, D. J. (2002). Statistical Fraud Detection.
-    \item Ngai, E. W. T. et al. (2011). Data mining in financial fraud detection.
-    \item Phua, C. et al. (2010). Fraud detection survey.
-    \item Chen, C. et al. (2004). Random Forest for imbalanced data.
-    \item Kaggle Credit Card Fraud Dataset.
-\end{enumerate}
+\bibitem{b1} Bolton, R. J., \& Hand, D. J. (2002). Statistical Fraud Detection.
+\bibitem{b2} Ngai, E. W. et al. (2011). Data mining techniques in fraud detection.
+\bibitem{b3} Phua, C. et al. (2010). Fraud detection survey.
+\bibitem{b4} Breiman, L. (2001). Random Forests.
+\bibitem{b5} Kaggle Credit Card Fraud Dataset.
+
+\end{thebibliography}
 
 \end{document}
-
