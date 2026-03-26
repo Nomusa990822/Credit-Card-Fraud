@@ -95,10 +95,7 @@ kaggle.json
 # =========================
 outputs/
 results/
-figures/
-*.png
-*.jpg
-*.jpeg
+#figures/
 
 # =========================
 # 🧾 TEMP FILES
